@@ -37,3 +37,4 @@ C:\Users\Diogo\Documents\GitHub\EVehicAPI\EVehcAPI\bin\Debug\net8.0\MongoDB.Driv
 C:\Users\Diogo\Documents\GitHub\EVehicAPI\EVehcAPI\bin\Debug\net8.0\SharpCompress.dll
 C:\Users\Diogo\Documents\GitHub\EVehicAPI\EVehcAPI\bin\Debug\net8.0\Snappier.dll
 C:\Users\Diogo\Documents\GitHub\EVehicAPI\EVehcAPI\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\Diogo\Documents\GitHub\EVehicAPI\EVehcAPI\obj\Debug\net8.0\EVehcAPI.sourcelink.json

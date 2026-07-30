@@ -25,4 +25,7 @@ public class User
     public double Balance { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [JsonIgnore]
+    public DateTime? LastUpdateAt { get; set; } = null;
 }

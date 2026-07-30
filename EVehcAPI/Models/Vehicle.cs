@@ -16,7 +16,8 @@ public class Vehicle
 
     public double Price { get; set; }
 
-    public int Battery { get; set; } = 0;
+    [JsonIgnore]
+    public int? Battery { get; set; } = 0;
 
     public bool Active { get; set; }
 
@@ -24,4 +25,7 @@ public class Vehicle
 
     [JsonIgnore]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [JsonIgnore]
+    public DateTime? LastUpdateAt { get; set; } = null;
 }

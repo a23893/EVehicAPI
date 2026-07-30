@@ -36,6 +36,14 @@ public class VehiclesController : ControllerBase
 
         vehicle.Id = null;
 
+        if(vehicle.IsElectric){
+            vehicle.Battery = 0;
+        }
+        else
+        {
+            vehicle.Battery = null;
+        }
+
         await _service.CreateAsync(vehicle);
 
         return CreatedAtAction(nameof(Get),
@@ -46,6 +54,8 @@ public class VehiclesController : ControllerBase
     public async Task<IActionResult> Put(string id, Vehicle vehicle)
     {
         vehicle.Id = id;
+        vehicle.LastUpdateAt = DateTime.UtcNow;
+        
         await _service.UpdateAsync(id, vehicle);
 
         return NoContent();

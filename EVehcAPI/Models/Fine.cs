@@ -23,4 +23,13 @@ public class Fine
     public DateTime ExpireDate { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [JsonIgnore]
+    public DateTime? LastUpdateAt { get; set; } = null;
+
+    [JsonIgnore]
+    public bool Payed { get; set; } = false;
+
+    [JsonIgnore]
+    public DateTime? PayedAt { get; set; } = null;
 }

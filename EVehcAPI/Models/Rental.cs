@@ -27,6 +27,18 @@ public class Rental
     public RentalStatus Status { get; set; } = RentalStatus.Pending;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [JsonIgnore]
+    public DateTime? LastUpdateAt { get; set; } = null;
+
+    [JsonIgnore]
+    public bool Payed { get; set; } = false;
+
+    [JsonIgnore]
+    public bool Fined { get; set; } = false;
+
+    [JsonIgnore]
+    public DateTime? PayedAt { get; set; } = null;
 }
 
 public enum RentalStatus
