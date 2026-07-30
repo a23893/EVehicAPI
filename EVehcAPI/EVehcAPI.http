@@ -1,0 +1,6 @@
+@EVehcAPI_HostAddress = http://localhost:5032
+
+GET {{EVehcAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
