@@ -18,10 +18,11 @@ public class Rental
     [BsonRepresentation(BsonType.ObjectId)]
     public string VehicleId { get; set; } = "";
 
-    public DateTime StartDate { get; set; }
+    public DateTime StartDate { get; set; } = DateTime.UtcNow;
 
     public DateTime EndDate { get; set; }
 
+    [JsonIgnore]
     public double TotalPrice { get; set; }
 
     public RentalStatus Status { get; set; } = RentalStatus.Pending;

@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<VehicleService>();
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<RentalService>();
+//builder.Services.AddSingleton<FineService>();
 
 builder.Services.AddControllers();
 
