@@ -61,6 +61,14 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
+    [HttpPatch("deactivate/{id}")]
+    public async Task<IActionResult> SoftDelete(string id)
+    {
+        await _service.SoftDeleteAsync(id);
+
+        return NoContent();
+    }
+
     [HttpGet("active")]
     public async Task<ActionResult<List<User>>> GetActive()
     {

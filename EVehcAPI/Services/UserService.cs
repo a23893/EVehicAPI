@@ -34,6 +34,9 @@ public class UserService
     public async Task DeleteAsync(string id) =>
         await _user.DeleteOneAsync(x => x.Id == id);
 
+    public async Task SoftDeleteAsync(string id) =>
+        await _user.UpdateOneAsync(x => x.Id == id, Builders<User>.Update.Set(u => u.IsActive, false));
+
     public async Task<List<User>> GetActiveAsync()
     {
         return await _user
