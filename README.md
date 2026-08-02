@@ -9,3 +9,8 @@ dotnet run
 http://localhost:5032
 
 http://localhost:5032/swagger
+
+# MongoDB
+
+USERNAME: admin
+PASSWORD: pass

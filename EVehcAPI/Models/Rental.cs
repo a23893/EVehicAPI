@@ -26,6 +26,7 @@ public class Rental
 
     public RentalStatus Status { get; set; } = RentalStatus.Pending;
 
+    [JsonIgnore]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [JsonIgnore]

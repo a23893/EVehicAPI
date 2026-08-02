@@ -22,6 +22,7 @@ public class Fine
 
     public DateTime ExpireDate { get; set; }
 
+    [JsonIgnore]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [JsonIgnore]

@@ -24,8 +24,14 @@ public class User
 
     public double Balance { get; set; }
 
+    public bool IsActive { get; set; }
+
+    [JsonIgnore]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [JsonIgnore]
     public DateTime? LastUpdateAt { get; set; } = null;
+
+    [JsonIgnore]
+    public DateTime? LastLoginAt { get; set; } = null;
 }

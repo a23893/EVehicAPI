@@ -16,7 +16,7 @@ public class VehicleService
             config["MongoDB:DatabaseName"]);
 
         _vehicle = database.GetCollection<Vehicle>(
-            config["MongoDB:CollectionName"]);
+            config["MongoDB:CollectionNameVehicles"]);
     }
 
     public async Task<List<Vehicle>> GetAsync() =>
@@ -37,7 +37,7 @@ public class VehicleService
     public async Task<List<Vehicle>> GetActiveAsync()
     {
         return await _vehicle
-            .Find(v => v.Active)
+            .Find(v => v.IsActive)
             .ToListAsync();
     }
 

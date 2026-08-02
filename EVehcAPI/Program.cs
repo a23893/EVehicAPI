@@ -3,6 +3,7 @@ using EVehicAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<VehicleService>();
+builder.Services.AddSingleton<UserService>();
 
 builder.Services.AddControllers();
 
