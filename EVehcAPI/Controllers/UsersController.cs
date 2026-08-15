@@ -27,7 +27,7 @@ public class UsersController : ControllerBase
         if (user == null)
             return NotFound();
 
-        return user;
+        return Ok(user);
     }
 
     [HttpPost]
@@ -50,7 +50,7 @@ public class UsersController : ControllerBase
 
         await _service.UpdateAsync(id, user);
 
-        return NoContent();
+        return Ok(user);
     }
 
     [HttpDelete("{id}")]
@@ -58,7 +58,7 @@ public class UsersController : ControllerBase
     {
         await _service.DeleteAsync(id);
 
-        return NoContent();
+        return Ok("User deleted successfully.");
     }
 
     [HttpPatch("deactivate/{id}")]
@@ -66,16 +66,26 @@ public class UsersController : ControllerBase
     {
         await _service.SoftDeleteAsync(id);
 
-        return NoContent();
+        return Ok("User deactivated successfully.");
     }
 
+    /// <summary>
+    /// Returns a list of all active users.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("active")]
     public async Task<ActionResult<List<User>>> GetActive()
     {
         return await _service.GetActiveAsync();
     }
 
-    [HttpPost("{id}/add-money")]
+    /// <summary>
+    /// Adds money to a user's balance.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    [HttpPatch("{id}/add-money")]
     public async Task<IActionResult> AddMoney(string id, [FromBody] double amount)
     {
         var result = await _service.AddMoneyAsync(id, amount);
@@ -83,6 +93,19 @@ public class UsersController : ControllerBase
         if (!result)
             return NotFound();
 
-        return NoContent();
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Changes the status of a user (active/inactive).
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpPatch("change-status/{id}")]
+    public async Task<IActionResult> ChangeStatus(string id)
+    {
+        await _service.ChangeStatusAsync(id);
+
+        return Ok("User status changed successfully.");
     }
 }

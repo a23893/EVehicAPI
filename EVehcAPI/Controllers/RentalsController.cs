@@ -64,7 +64,7 @@ public class RentalsController : ControllerBase
 
         await _service.UpdateAsync(id, rental);
 
-        return NoContent();
+        return Ok(rental);
     }
 
     [HttpDelete("{id}")]
@@ -72,10 +72,10 @@ public class RentalsController : ControllerBase
     {
         await _service.DeleteAsync(id);
 
-        return NoContent();
+        return Ok("Rental deleted successfully.");
     }
 
-    [HttpPatch("pay-rental/{id}")]
+    [HttpPatch("pay/{id}")]
     public async Task<IActionResult> Pay(string id)
     {
         var result = await _service.PayAsync(id);
@@ -83,6 +83,17 @@ public class RentalsController : ControllerBase
         if (!result)
             return NotFound();
 
-        return Ok(result);
+        return Ok("Rental paid successfully.");
+    }
+
+    [HttpPatch("deliver/{id}")]
+    public async Task<IActionResult> Deliver(string id)
+    {
+        var result = await _service.DeliverAsync(id);
+
+        if (!result)
+            return NotFound();
+
+        return Ok("Rental delivered successfully.");
     }
 }

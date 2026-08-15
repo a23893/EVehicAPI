@@ -34,6 +34,10 @@ public class VehicleService
     public async Task DeleteAsync(string id) =>
         await _vehicle.DeleteOneAsync(x => x.Id == id);
 
+    /// <summary>
+    /// Gets all active vehicles from the database.
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<Vehicle>> GetActiveAsync()
     {
         return await _vehicle
@@ -41,6 +45,12 @@ public class VehicleService
             .ToListAsync();
     }
 
+    /// <summary>
+    /// Charges the battery of an electric vehicle.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public async Task<bool> ChargeBatteryAsync(string id)
     {
         var vehicle = await _vehicle.Find(v => v.Id == id).FirstOrDefaultAsync();

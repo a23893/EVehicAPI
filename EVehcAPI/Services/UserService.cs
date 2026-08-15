@@ -44,6 +44,12 @@ public class UserService
             .ToListAsync();
     }
 
+    /// <summary>
+    /// Adds money to a user's balance.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="amount"></param>
+    /// <returns></returns>
     public async Task<bool> AddMoneyAsync(string id, double amount)
     {
         var user = await _user.Find(u => u.Id == id).FirstOrDefaultAsync();
@@ -57,4 +63,26 @@ public class UserService
 
         return true;
     }
+
+    /// <summary>
+    /// Changes the status of a user (active/inactive).
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="KeyNotFoundException"></exception>
+    public async Task ChangeStatusAsync(string id)
+    {
+        var user = await _user.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+        if (user == null)
+            throw new KeyNotFoundException("User not found.");
+
+        if (user.IsActive)
+            user.IsActive = false;
+        else
+            user.IsActive = true;
+
+        await _user.ReplaceOneAsync(u => u.Id == id, user);
+    }
+        
 }

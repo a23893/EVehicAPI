@@ -40,6 +40,9 @@ public class Rental
     public bool Fined { get; set; } = false;
 
     [JsonIgnore]
+    public bool Delivered { get; set; } = false;
+
+    [JsonIgnore]
     public DateTime? PayedAt { get; set; } = null;
 }
 

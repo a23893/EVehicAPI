@@ -27,7 +27,7 @@ public class VehiclesController : ControllerBase
         if (vehicle == null)
             return NotFound();
 
-        return vehicle;
+        return Ok(vehicle);
     }
 
     [HttpPost]
@@ -58,7 +58,7 @@ public class VehiclesController : ControllerBase
         
         await _service.UpdateAsync(id, vehicle);
 
-        return NoContent();
+        return Ok(vehicle);
     }
 
     [HttpDelete("{id}")]
@@ -66,15 +66,24 @@ public class VehiclesController : ControllerBase
     {
         await _service.DeleteAsync(id);
 
-        return NoContent();
+        return Ok("Vehicle deleted successfully.");
     }
 
+    /// <summary>
+    /// Returns a list of all active vehicles.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("active")]
     public async Task<ActionResult<List<Vehicle>>> GetActive()
     {
         return await _service.GetActiveAsync();
     }
 
+    /// <summary>
+    /// Charges the battery of an electric vehicle.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpPatch("{id}/charge")]
     public async Task<IActionResult> Charge(string id)
     {
@@ -83,7 +92,7 @@ public class VehiclesController : ControllerBase
         if (!success)
             return NotFound();
 
-        return NoContent();
+        return Ok("Vehicle battery charged successfully.");
     }
 
 }

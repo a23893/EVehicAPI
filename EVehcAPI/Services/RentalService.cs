@@ -60,6 +60,8 @@ public class RentalService
 
         rental.Status = RentalStatus.Pending;
 
+        rental.Delivered = false;
+
         await _rentals.InsertOneAsync(rental);
     }
 
@@ -69,7 +71,11 @@ public class RentalService
     public async Task DeleteAsync(string id) =>
         await _rentals.DeleteOneAsync(x => x.Id == id);
 
-    
+    /// <summary>
+    /// Marks a rental as paid.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<bool> PayAsync(string id)
     {
         var rental = await _rentals.Find(r => r.Id == id).FirstOrDefaultAsync();
@@ -82,4 +88,20 @@ public class RentalService
         return true;
     }
 
+    /// <summary>
+    /// Marks a rental as delivered.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<bool> DeliverAsync(string id)
+    {
+        var rental = await _rentals.Find(r => r.Id == id).FirstOrDefaultAsync();
+
+        if (rental == null)
+            return false;
+
+        rental.Delivered = true;
+        await _rentals.ReplaceOneAsync(r => r.Id == id, rental);
+        return true;
+    }
 }

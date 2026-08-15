@@ -12,13 +12,19 @@ public class Fine
     [JsonIgnore]
     public string? Id { get; set; }
 
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string UserId { get; set; } = "";
+
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string RentalId { get; set; } = "";
+
     public string Name { get; set; } = "";
 
     public string Type { get; set; } = "";
 
     public string Description { get; set; } = "";
 
-    public int Value { get; set; }
+    public double Value { get; set; }
 
     public DateTime ExpireDate { get; set; }
 
