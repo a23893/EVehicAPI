@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EVehcAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71c430c9be58f4d47e24293f4cbe124998b10c2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcf3a23121c24594d7502d8dac2ef53e6c04b9a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("EVehcAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EVehcAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

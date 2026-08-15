@@ -74,4 +74,15 @@ public class RentalsController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPatch("pay-rental/{id}")]
+    public async Task<IActionResult> Pay(string id)
+    {
+        var result = await _service.PayAsync(id);
+
+        if (!result)
+            return NotFound();
+
+        return Ok(result);
+    }
 }

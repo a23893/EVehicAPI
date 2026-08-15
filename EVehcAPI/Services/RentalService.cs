@@ -58,6 +58,8 @@ public class RentalService
 
         rental.TotalPrice = durationMinutes * vehicle.Price;
 
+        rental.Status = RentalStatus.Pending;
+
         await _rentals.InsertOneAsync(rental);
     }
 
@@ -66,4 +68,18 @@ public class RentalService
 
     public async Task DeleteAsync(string id) =>
         await _rentals.DeleteOneAsync(x => x.Id == id);
+
+    
+    public async Task<bool> PayAsync(string id)
+    {
+        var rental = await _rentals.Find(r => r.Id == id).FirstOrDefaultAsync();
+
+        if (rental == null)
+            return false;
+
+        rental.Payed = true;
+        await _rentals.ReplaceOneAsync(r => r.Id == id, rental);
+        return true;
+    }
+
 }
