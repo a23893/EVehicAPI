@@ -5,7 +5,7 @@ using EVehicAPI.Services;
 namespace EVehicAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class RentalsController : ControllerBase
 {
     private readonly RentalService _service;

@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<VehicleService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<RentalService>();
-//builder.Services.AddSingleton<FineService>();
+builder.Services.AddSingleton<FineService>();
+builder.Services.AddSingleton<PaymentService>();
 
 builder.Services.AddControllers();
 
@@ -13,6 +14,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Register the health check services
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -51,6 +54,20 @@ app.MapGet("/", () =>
 })
 .WithName("Home")
 .WithOpenApi();
+
+app.MapGet("api/status", () =>
+{
+    return new
+    {
+        Status = "Healthy",
+        Timestamp = DateTime.UtcNow,
+        Version = "1.0.0"
+    };
+})
+.WithName("Status")
+.WithOpenApi();
+
+app.MapHealthChecks("api/health");
 
 app.MapControllers();
 

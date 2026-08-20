@@ -12,6 +12,8 @@ public class Payment
     [JsonIgnore]
     public string? Id { get; set; }
 
+    public string? PayableId { get; set; } // ID of the entity that the payment is for (e.g., Rental ID, Fine ID)
+
     public PaymentType Type { get; set; }
 
     public PaymentMethod Method { get; set; }
@@ -30,6 +32,12 @@ public class Payment
 
     [JsonIgnore]
     public DateTime? PaymentDate { get; set; } = null;
+
+    [JsonIgnore]
+    public DateTime? ExpiryDate { get; set; } = null;
+
+    [JsonIgnore]
+    public bool Expired { get; set; } = false;
 }
 
 public enum PaymentStatus
